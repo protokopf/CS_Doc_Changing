@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFilesFillingProgramm", "DocFilesFillingProgramm\DocFilesFillingProgramm.csproj", "{2ACA6EB8-67A7-43E6-9019-D584A20BBDDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFilesFillingProgrammUI", "DocFilesFillingProgramm\DocFilesFillingProgrammUI.csproj", "{2ACA6EB8-67A7-43E6-9019-D584A20BBDDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFilesFillingProgrammLogick", "DocFilesFillingProgrammLogick\DocFilesFillingProgrammLogick.csproj", "{7927A4E7-F469-42BD-933C-E482372E5D1F}"
 EndProject

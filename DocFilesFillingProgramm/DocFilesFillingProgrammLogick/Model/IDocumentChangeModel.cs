@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;

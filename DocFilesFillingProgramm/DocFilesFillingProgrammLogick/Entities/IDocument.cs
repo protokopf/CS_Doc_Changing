@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DocFilesFillingProgrammLogick.Entities
+﻿namespace DocFilesFillingProgrammLogick.Entities
 {
     /// <summary>
     /// Interface to all kind of documents, that can be changing by using filling info.

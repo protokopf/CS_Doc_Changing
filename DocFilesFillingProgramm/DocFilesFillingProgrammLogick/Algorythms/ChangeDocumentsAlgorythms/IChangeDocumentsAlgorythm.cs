@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using DocFilesFillingProgrammLogick.Entities;
 
@@ -16,8 +12,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms
         /// <summary>
         /// Change list of documents using filling info.
         /// </summary>
-        /// <param name="fillingInfo"></param>
-        /// <param name="documents"></param>
-        void ChangeDocuments(IList<IFillingInfo> fillingInfo, ref IList<IDocument> documents);
+        /// <param name="dictionary"></param>
+        void ChangeDocuments(ref Dictionary<IFillingInfo, IDocument> dictionary);
     }
 }

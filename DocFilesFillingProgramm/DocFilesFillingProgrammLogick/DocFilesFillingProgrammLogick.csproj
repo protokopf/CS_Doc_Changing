@@ -46,6 +46,7 @@
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\ICreateDocumentAlgorythm.cs" />
     <Compile Include="Entities\IDocument.cs" />
     <Compile Include="Entities\IFillingtInfo.cs" />
+    <Compile Include="Entities\WordDocument.cs" />
     <Compile Include="Model\CreateAndChangeDocumentsWithStudentInfoModel.cs" />
     <Compile Include="Model\IDocumentChangeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

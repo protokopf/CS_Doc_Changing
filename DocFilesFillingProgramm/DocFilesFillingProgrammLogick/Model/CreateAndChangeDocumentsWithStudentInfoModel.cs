@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DocumentFormat.OpenXml;
 
 using DocFilesFillingProgrammLogick.Entities;
-using DocumentFormat.OpenXml.Packaging;
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
@@ -20,6 +15,8 @@ namespace DocFilesFillingProgrammLogick.Model
         private ICreateDocumentsAlgorythm _createAlg;
         private IChangeDocumentsAlgorythm _changeAlg;
         private IRetrieveInfoAlgorythm _retrieveAlg;
+
+        private Dictionary<IFillingInfo, IDocument> _infoAndDocuments;
 
         #region IDocumentChangeModel implementation
 
@@ -72,17 +69,30 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public void RetrieveFillingInfo()
         {
-            throw new NotImplementedException();
+            if (RetrieveInfoAlgorythm != null)
+            {
+                RetrieveInfoAlgorythm.RetrieveFillingInfo(ref _infoAndDocuments);
+            }
         }
 
         public void CreateDocuments()
         {
-            throw new NotImplementedException();
+            if (_infoAndDocuments != null && CreateAlgorythm != null)
+            {
+                CreateAlgorythm.CreateDocuments(ref _infoAndDocuments);
+            }
         }
 
         public void SaveDocuments()
         {
-            throw new NotImplementedException();
+            if (_infoAndDocuments != null)
+            {
+                foreach (KeyValuePair<IFillingInfo,IDocument> doc in _infoAndDocuments)
+                {
+                    doc.Value.Close();
+                }
+                _infoAndDocuments = null;
+            }
         }
 
         public void StartChangingDocuments()

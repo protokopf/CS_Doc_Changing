@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using DocFilesFillingProgrammLogick.Entities;
 
@@ -16,8 +12,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         /// <summary>
         /// Creates and returns list of documents.
         /// </summary>
-        /// <param name="fillingInfoForDocuments"></param>
-        /// <returns>List of documents is creation has been succesfull, otherwise null.</returns>
-        List<IDocument> CreateDocuments(IList<IFillingInfo> fillingInfoForDocuments);
+        /// <param name="documents"></param>
+        void CreateDocuments(ref Dictionary<IFillingInfo,IDocument> documents);
     }
 }
