@@ -1,0 +1,2 @@
+E:\Программирование\WPF\DocFilesFillingProgramm\DocFilesFillingProgramm\bin\Debug\DocFilesFillingProgramm.exe.config
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\bin\Debug\DocFilesFillingProgramm.exe.config
