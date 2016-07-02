@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorythms\ChangeDocumentsAlgorythms\IChangeDocumentsAlgorythm.cs" />
+    <Compile Include="Algorythms\CreateDocumentsAlgorythms\CreateFromExcelAlgorythm.cs" />
     <Compile Include="Algorythms\RetrieveInfoAlgorythms\IRetrieveInfoAlgorythm.cs" />
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\ICreateDocumentAlgorythm.cs" />
     <Compile Include="Entities\IDocument.cs" />

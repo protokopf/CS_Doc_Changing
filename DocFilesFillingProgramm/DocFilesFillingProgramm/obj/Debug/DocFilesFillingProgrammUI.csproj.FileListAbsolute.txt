@@ -1,0 +1,14 @@
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\bin\Debug\DocFilesFillingProgramm.exe.config
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\bin\Debug\DocFilesFillingProgramm.exe
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\bin\Debug\DocFilesFillingProgramm.pdb
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgrammUI.csprojResolveAssemblyReference.cache
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\Windows\MainWindow.g.cs
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\App.g.cs
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgramm_MarkupCompile.cache
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgramm_MarkupCompile.lref
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\Windows\MainWindow.baml
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgramm.g.resources
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgramm.Properties.Resources.resources
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgrammUI.csproj.GenerateResource.Cache
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgramm.exe
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgramm\obj\Debug\DocFilesFillingProgramm.pdb
