@@ -9,7 +9,7 @@ namespace DocFilesFillingProgrammLogick.Model
     /// <summary>
     /// Interface for model, that change documents with specific info.
     /// </summary>
-    interface IDocumentChangeModel
+    public interface IDocumentChangeModel
     {
         /// <summary>
         /// Retrieves filling info from anywhere.

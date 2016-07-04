@@ -6,7 +6,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
     /// <summary>
     /// Interface to algorythms, that incapsulate logick for retrieving filling info from different sources (xls, xml, ect.).
     /// </summary>
-    interface IRetrieveInfoAlgorythm
+    public interface IRetrieveInfoAlgorythm
     {
         /// <summary>
         /// Retrieves and returns filling info for documents.

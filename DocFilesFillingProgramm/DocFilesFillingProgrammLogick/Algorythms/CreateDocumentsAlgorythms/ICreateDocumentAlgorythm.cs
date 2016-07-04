@@ -7,7 +7,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
     /// <summary>
     /// Interface to algorythms, that incapsulate logick for creating documents, using or not filling info.
     /// </summary>
-    interface ICreateDocumentsAlgorythm
+    public interface ICreateDocumentsAlgorythm
     {
         /// <summary>
         /// Creates and returns list of documents.

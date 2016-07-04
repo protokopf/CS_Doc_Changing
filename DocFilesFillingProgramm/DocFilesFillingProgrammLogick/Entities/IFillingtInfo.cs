@@ -5,7 +5,7 @@ namespace DocFilesFillingProgrammLogick.Entities
     /// <summary>
     /// Interface that represent any filling info with any pars "field->value".
     /// </summary>
-    interface IFillingInfo
+    public interface IFillingInfo
     {
         /// <summary>
         /// Dictionary with all fields and their values.

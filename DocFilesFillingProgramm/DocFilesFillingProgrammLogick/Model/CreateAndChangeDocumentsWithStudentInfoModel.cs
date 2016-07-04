@@ -5,6 +5,8 @@ using DocFilesFillingProgrammLogick.Entities;
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
@@ -97,7 +99,11 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public void StartChangingDocuments()
         {
-            throw new NotImplementedException();
+            _infoAndDocuments = new Dictionary<IFillingInfo, IDocument>();
+            RetrieveFillingInfo();
+            CreateDocuments();
+            ChangeAlgorythm.ChangeDocuments(ref _infoAndDocuments);
+            SaveDocuments();
         }
 
         public void StopChangingDocuments()

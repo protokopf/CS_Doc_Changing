@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface to all kind of documents, that can be changing by using filling info.
     /// </summary>
-    interface IDocument
+    public interface IDocument
     {
         /// <summary>
         /// Create in memory and open document.

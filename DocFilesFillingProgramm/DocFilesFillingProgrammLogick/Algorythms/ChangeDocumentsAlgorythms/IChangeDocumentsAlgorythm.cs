@@ -7,7 +7,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms
     /// <summary>
     /// Interface to algorythms, that incapsulate logick for changing documents with filling info.
     /// </summary>
-    interface IChangeDocumentsAlgorythm
+    public interface IChangeDocumentsAlgorythm
     {
         /// <summary>
         /// Change list of documents using filling info.

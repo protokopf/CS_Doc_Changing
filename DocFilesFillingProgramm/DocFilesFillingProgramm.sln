@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFilesFillingProgrammLogi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFilesFillingProgrammUI", "DocFilesFillingProgrammUI\DocFilesFillingProgrammUI.csproj", "{62063AD1-823D-4C64-8BEA-8903DE72E98A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFilesFillingProgrammConsoleTest", "DocFilesFillingProgrammConsoleTest\DocFilesFillingProgrammConsoleTest.csproj", "{581F5CCF-0290-4977-B08C-58F5CA900447}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{62063AD1-823D-4C64-8BEA-8903DE72E98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62063AD1-823D-4C64-8BEA-8903DE72E98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62063AD1-823D-4C64-8BEA-8903DE72E98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{581F5CCF-0290-4977-B08C-58F5CA900447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{581F5CCF-0290-4977-B08C-58F5CA900447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{581F5CCF-0290-4977-B08C-58F5CA900447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{581F5CCF-0290-4977-B08C-58F5CA900447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
