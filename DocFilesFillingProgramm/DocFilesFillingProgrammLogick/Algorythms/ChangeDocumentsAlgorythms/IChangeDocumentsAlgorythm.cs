@@ -13,6 +13,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms
         /// Change list of documents using filling info.
         /// </summary>
         /// <param name="dictionary"></param>
-        void ChangeDocuments(ref Dictionary<IFillingInfo, IDocument> dictionary);
+        void ChangeDocuments(ref IList<DocumentAndInfoEntity> docAndInfoList);
     }
 }

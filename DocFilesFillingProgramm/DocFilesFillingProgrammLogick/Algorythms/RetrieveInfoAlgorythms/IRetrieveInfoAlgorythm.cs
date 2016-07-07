@@ -12,6 +12,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
         /// Retrieves and returns filling info for documents.
         /// </summary>
         /// <returns>List of IFillingInfo instances if retrieving has been succesfull, otherwise null.</returns>
-        void RetrieveFillingInfo(ref Dictionary<IFillingInfo, IDocument> fillinInfos);
+        void RetrieveFillingInfo(ref IList<DocumentAndInfoEntity> fillinInfos);
     }
 }

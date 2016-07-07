@@ -31,7 +31,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
         }
 
 
-        public void RetrieveFillingInfo(ref Dictionary<IFillingInfo, IDocument> documents)
+        public void RetrieveFillingInfo(ref IList<DocumentAndInfoEntity> documents)
         {
             OpenDocument();
 
@@ -53,8 +53,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
                 counter = 0;
                 foreach (Cell c in row.Elements<Cell>())
                 {
-                    //int ssid = int.parse(c.cellvalue.text);
-                    //string str = sst.childelements[ssid].innertext;
                     if (c != null)
                     {
                         string str = null;
@@ -87,7 +85,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
                     isFirstEnter = false;
                 else
                 {
-                    documents.Add(fillingInfo, null);
+                    documents.Add(new DocumentAndInfoEntity() { Info = fillingInfo, Document = null });
                 }
             }
 
@@ -103,7 +101,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
 
         private void FillListOfFields(string fieldName)
         {
-            _fields.Add(_builder.Append("*").Append(fieldName).Append("*").ToString());
+            _fields.Add(_builder.Append("X").Append(fieldName).Append("X").ToString());
             _builder.Clear();
         }
 

@@ -24,13 +24,8 @@ namespace DocFilesFillingProgrammLogick.Model
         /// <summary>
         /// Starts changing documents (in separate thread, maybe).
         /// </summary>
-        void StartChangingDocuments();
-
-        /// <summary>
-        /// Stops changing documents.
-        /// </summary>
-        void StopChangingDocuments();
-       
+        void ChangeDocuments();
+    
         /// <summary>
         /// Saves all created documents.
         /// </summary>
@@ -40,6 +35,11 @@ namespace DocFilesFillingProgrammLogick.Model
         /// Path to storage, where created and changed documents will be storaged.
         /// </summary>
         string StoragePath { get; set; }
+
+        /// <summary>
+        /// Path to file, that contains all changing information
+        /// </summary>
+        string DataFilePath { get; set; }
 
         IRetrieveInfoAlgorythm RetrieveInfoAlgorythm { get; set; }
         ICreateDocumentsAlgorythm CreateAlgorythm { get; set; }

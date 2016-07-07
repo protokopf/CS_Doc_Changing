@@ -42,12 +42,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorythms\ChangeDocumentsAlgorythms\ChangeDocumentUsingExcelAlgorythm.cs" />
     <Compile Include="Algorythms\ChangeDocumentsAlgorythms\IChangeDocumentsAlgorythm.cs" />
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\CreateDocumentUsingOpenXML.cs" />
     <Compile Include="Algorythms\RetrieveInfoAlgorythms\RetrieveInfoFromExcelUsingOpenXML.cs" />
     <Compile Include="Algorythms\RetrieveInfoAlgorythms\IRetrieveInfoAlgorythm.cs" />
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\ICreateDocumentAlgorythm.cs" />
     <Compile Include="Entities\AppConfigManager.cs" />
+    <Compile Include="Entities\DocumentAndInfoEntity.cs" />
     <Compile Include="Entities\ExcelEntities\OpenXMLExcelDocument.cs" />
     <Compile Include="Entities\IConfigManager.cs" />
     <Compile Include="Entities\IDocument.cs" />

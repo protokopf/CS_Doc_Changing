@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DocFilesFillingProgrammLogick.Entities
 {
-    class AppConfigManager : IConfigManager
+    public class AppConfigManager : IConfigManager
     {
         public string this[string key]
         {

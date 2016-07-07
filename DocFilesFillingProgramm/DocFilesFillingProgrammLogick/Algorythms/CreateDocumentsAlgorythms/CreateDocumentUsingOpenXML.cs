@@ -8,47 +8,49 @@ using System.IO;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
 {
-    class CreateDocumentUsingOpenXML : ICreateDocumentsAlgorythm
+    public class CreateDocumentUsingFileCopy : ICreateDocumentsAlgorythm
     {
+        private const string pathToMaleTemplate = @"Templates\maleTemplate.docx";
+        private const string pathToFemaleTemplate = @"Templates\femaleTemplate.docx";
+        private const string fileExtention = ".docx";
+
         private string _pathToStorageFolder;
-        private IConfigManager _configManager;
-        private Random _randomizer;
+        private string _pathToExcelDocument;
 
-        public CreateDocumentUsingOpenXML(string storageFolder)
+        public CreateDocumentUsingFileCopy(string storageFolder, string dataFilePath)
         {
+            _pathToExcelDocument = dataFilePath;
             _pathToStorageFolder = storageFolder;
-            _configManager = new AppConfigManager();
-            _randomizer = new Random();
         }
 
-        public void CreateDocuments(ref Dictionary<IFillingInfo, IDocument> documents)
+        public void CreateDocuments(ref IList<DocumentAndInfoEntity> documents)
         {
-            foreach(var pair in documents)
-            {
-                FormDocument(ref pair.Key, ref pair.Value);
-            }
+            foreach(DocumentAndInfoEntity pair in documents)
+                FormDocument(pair);
         }
 
-        private void FormDocument(ref IFillingInfo info, ref IDocument document)
-        {
-            string pathToFile = CreateDocumentInFileSystem(info);
 
-        }
-        private string CreateDocumentInFileSystem(IFillingInfo info)
+        private void FormDocument(DocumentAndInfoEntity document)
         {
-            string copyPath = null;
-            switch(info.Fields["*GENDER*"])
+            string name = (GenerateFileName(document)).Trim();
+            string fullPath = (Path.Combine(_pathToStorageFolder, name)).Trim();
+            string templatePath = null;
+            switch (document.Info.Fields["XGENDERX"])
             {
                 case "male":
-                    copyPath = _configManager["maleTemplate"];
+                    templatePath = pathToMaleTemplate;
                     break;
                 case "female":
-                    copyPath = _configManager["femaleTemplate"];
+                    templatePath = pathToFemaleTemplate;
                     break;
             }
-            string newName =_pathToStorageFolder + info.Fields["*NAME*"] + info.Fields["*LASTNAME*"] + _randomizer.Next().ToString();
-            File.Copy(copyPath, newName);
-            return newName;
+            File.Copy(templatePath, fullPath);
+            document.Document = new OpenXMLWordDocument(fullPath,name);
+        }
+        private string GenerateFileName(DocumentAndInfoEntity document)
+        {
+            string fileName = String.Format("{0}.{1}_{2}{3}", document.Info.Fields["XIDX"], document.Info.Fields["XNAMEX"], document.Info.Fields["XLASTNAMEX"],  fileExtention);
+            return fileName;
         }
     }
 }

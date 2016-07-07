@@ -13,6 +13,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         /// Creates and returns list of documents.
         /// </summary>
         /// <param name="documents"></param>
-        void CreateDocuments(ref Dictionary<IFillingInfo,IDocument> documents);
+        void CreateDocuments(ref IList<DocumentAndInfoEntity> documents);
     }
 }

@@ -10,15 +10,25 @@ using System.Threading.Tasks;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
-    class CreateAndChangeDocumentsWithStudentInfoModel : IDocumentChangeModel
+
+    public class CreateAndChangeDocumentsWithStudentInfoModel : IDocumentChangeModel
     {
         private string _folderPath;
+        private string _excelDocumentFilePath;
 
         private ICreateDocumentsAlgorythm _createAlg;
         private IChangeDocumentsAlgorythm _changeAlg;
         private IRetrieveInfoAlgorythm _retrieveAlg;
 
-        private Dictionary<IFillingInfo, IDocument> _infoAndDocuments;
+        private IList<DocumentAndInfoEntity> _infoAndDocuments;
+
+        public CreateAndChangeDocumentsWithStudentInfoModel(string folderPath, string excelFilePath)
+        {
+            _folderPath = folderPath;
+            _excelDocumentFilePath = excelFilePath;
+            _infoAndDocuments = new List<DocumentAndInfoEntity>();
+        }
+
 
         #region IDocumentChangeModel implementation
 
@@ -69,6 +79,12 @@ namespace DocFilesFillingProgrammLogick.Model
             }
         }
 
+        public string DataFilePath
+        {
+            get { return _excelDocumentFilePath; }
+            set { _excelDocumentFilePath = value; }
+        }
+
         public void RetrieveFillingInfo()
         {
             if (RetrieveInfoAlgorythm != null)
@@ -89,27 +105,22 @@ namespace DocFilesFillingProgrammLogick.Model
         {
             if (_infoAndDocuments != null)
             {
-                foreach (KeyValuePair<IFillingInfo,IDocument> doc in _infoAndDocuments)
+                foreach (var doc in _infoAndDocuments)
                 {
-                    doc.Value.Close();
+                    doc.Document.Close();
                 }
                 _infoAndDocuments = null;
             }
         }
 
-        public void StartChangingDocuments()
+        public void ChangeDocuments()
         {
-            _infoAndDocuments = new Dictionary<IFillingInfo, IDocument>();
-            RetrieveFillingInfo();
-            CreateDocuments();
-            ChangeAlgorythm.ChangeDocuments(ref _infoAndDocuments);
-            SaveDocuments();
+            if (_changeAlg != null && _infoAndDocuments != null)
+            {
+                ChangeAlgorythm.ChangeDocuments(ref _infoAndDocuments);
+            }
         }
 
-        public void StopChangingDocuments()
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
     }

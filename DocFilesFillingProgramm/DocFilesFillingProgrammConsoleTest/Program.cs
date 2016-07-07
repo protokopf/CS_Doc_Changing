@@ -8,6 +8,9 @@ using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Entities;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocFilesFillingProgrammLogick.Model;
+using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
+using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
 
 namespace DocFilesFillingProgrammConsoleTest
 {
@@ -15,27 +18,20 @@ namespace DocFilesFillingProgrammConsoleTest
     {
         static void Main(string[] args)
         {
-            string path = "FillingInfo.xlsx";
-            string sheet = "ListSheet";
-            IRetrieveInfoAlgorythm alg = new RetrieveInfoFromExcelUsingOpenXML(path, sheet);
+            string storageFolder = @"C:\Users\Константин\Desktop\Documents";
+            string excelPath = @"Storage\excelStorage.xlsx";
 
-            Dictionary<IFillingInfo, IDocument> dummy = new Dictionary<IFillingInfo, IDocument>();
 
-            alg.RetrieveFillingInfo(ref dummy);
-            PrintDummDictionaryKeys(dummy);
+            IDocumentChangeModel model = new CreateAndChangeDocumentsWithStudentInfoModel(storageFolder,excelPath);
 
+            model.RetrieveInfoAlgorythm = new RetrieveInfoFromExcelUsingOpenXML(excelPath, "ListSheet");
+            model.CreateAlgorythm = new CreateDocumentUsingFileCopy(storageFolder,excelPath);
+            model.ChangeAlgorythm = new ChangeDocumentUsingExcelAlgorythm();
+
+            model.RetrieveFillingInfo();
+            model.CreateDocuments();
+            model.ChangeDocuments();
+            model.SaveDocuments();
         }
-
-        public static void PrintDummDictionaryKeys(Dictionary<IFillingInfo, IDocument> dummy)
-        {
-            foreach(var key in dummy.Keys)
-            {
-                foreach(var fieldAndValue in key.Fields)
-                    Console.WriteLine("Key: {0}, Value: {1}", fieldAndValue.Key, fieldAndValue.Value);
-                Console.WriteLine("-----------------------------------------------------------------");
-            }
-        }
-
-
     }
 }

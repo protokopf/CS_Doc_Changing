@@ -16,11 +16,14 @@
         void Close();
 
         /// <summary>
+        /// Saves document.
+        /// </summary>
+        void Save();
+        
+        /// <summary>
         /// Replace replaced text with replaceable text in document.
         /// </summary>
-        /// <param name="repleaceableText"></param>
-        /// <param name="replacedText"></param>
-        void ReplaceTextInPosition(string repleaceableText, string replacedText);
+        void ReplaceTextInPosition(string newText, string oldText);
 
         /// <summary>
         /// Path to document file in file system.

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System.IO;
+using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml;
 
 namespace DocFilesFillingProgrammLogick.Entities
 {
@@ -13,7 +16,16 @@ namespace DocFilesFillingProgrammLogick.Entities
     {
         private string _name;
         private string _path;
+
         private WordprocessingDocument _document;
+        private IEnumerable<Text> _elements;
+
+
+        public OpenXMLWordDocument(string fullPath, string name)
+        {
+            _name = name;
+            _path = fullPath;
+        }
 
         #region IDocument implementation
 
@@ -43,18 +55,38 @@ namespace DocFilesFillingProgrammLogick.Entities
 
         public void Open()
         {
-            throw new NotImplementedException();
+            if(_document == null)
+            {
+                _document = WordprocessingDocument.Open(_path,true);
+                _elements = _document.MainDocumentPart.Document.Descendants<Text>();
+            }
         }
 
         public void Close()
         {
-            throw new NotImplementedException();
+            if (_document != null)
+            {
+                Save();
+                _document.Close();
+                _document = null;
+            }
         }
 
-        public void ReplaceTextInPosition(string repleaceableText, string replacedText)
+        public void Save()
         {
-            throw new NotImplementedException();
+
         }
+        public void ReplaceTextInPosition(string newText, string oldText)
+        {
+            foreach (var text in _elements)
+            {
+                if (text.Text.Contains(oldText))
+                {
+                    text.Text = text.Text.Replace(oldText, newText);
+                }
+            }
+        }
+
 
         #endregion
     }

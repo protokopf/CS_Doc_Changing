@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace DocFilesFillingProgrammLogick.Entities
 {
-    public interface IConfigManager
+    public class DocumentAndInfoEntity
     {
-        string this[string key]
-        {
-            get;
-        }
+        public IFillingInfo Info { get; set; }
+        public IDocument Document { get; set; }
     }
 }
