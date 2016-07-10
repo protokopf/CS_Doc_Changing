@@ -2,14 +2,12 @@
 using System.IO;
 using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
 using DocFilesFillingProgrammLogick.Entities.InfoEntites;
+using DocFilesFillingProgrammLogick.Entities.ManagetEntities;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
 {
     public class CreateOpenXMLDocumentAlgorythm : ICreateDocumentAlgorythm
     {
-        private const string pathToMaleTemplate = @"Templates\maleTemplate.docx";
-        private const string pathToFemaleTemplate = @"Templates\femaleTemplate.docx";
-        private const string fileExtention = ".docx";
 
         private string _pathToStorageFolder;
         private string _pathToExcelDocument;
@@ -34,10 +32,10 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
             switch (info.Fields["<gender>"])
             {
                 case "male":
-                    templatePath = pathToMaleTemplate;
+                    templatePath = AppConfigManager.Instance()["maleTemplate"];
                     break;
                 case "female":
-                    templatePath = pathToFemaleTemplate;
+                    templatePath = AppConfigManager.Instance()["femaleTemplate"];
                     break;
             }
             File.Copy(templatePath, fullPath);
@@ -45,8 +43,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         }
         private string GenerateFileName(IFillingInfo info)
         {
-            string fileName = String.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"],  fileExtention);
-            return fileName;
+            return string.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], AppConfigManager.Instance()["fileExtention"]);
         }
 
         

@@ -11,4 +11,5 @@ E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.csproj.GenerateResource.Cache
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.exe
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.pdb
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\App.config
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.csprojResolveAssemblyReference.cache
