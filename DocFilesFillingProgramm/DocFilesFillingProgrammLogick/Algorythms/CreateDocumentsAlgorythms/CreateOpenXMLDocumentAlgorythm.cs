@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DocFilesFillingProgrammLogick.Entities;
 using System.IO;
+using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
+using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
 {
-    public class CreateDocumentUsingFileCopy : ICreateDocumentsAlgorythm
+    public class CreateOpenXMLDocumentAlgorythm : ICreateDocumentAlgorythm
     {
         private const string pathToMaleTemplate = @"Templates\maleTemplate.docx";
         private const string pathToFemaleTemplate = @"Templates\femaleTemplate.docx";
@@ -17,25 +14,24 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         private string _pathToStorageFolder;
         private string _pathToExcelDocument;
 
-        public CreateDocumentUsingFileCopy(string storageFolder, string dataFilePath)
+        public CreateOpenXMLDocumentAlgorythm(string storageFolder, string dataFilePath)
         {
             _pathToExcelDocument = dataFilePath;
             _pathToStorageFolder = storageFolder;
         }
 
-        public void CreateDocuments(ref IList<DocumentAndInfoEntity> documents)
+        public IDocument CreateDocument(IFillingInfo info)
         {
-            foreach(DocumentAndInfoEntity pair in documents)
-                FormDocument(pair);
+            return FormDocument(info);
         }
 
 
-        private void FormDocument(DocumentAndInfoEntity document)
+        private IDocument FormDocument(IFillingInfo info)
         {
-            string name = (GenerateFileName(document)).Trim();
+            string name = (GenerateFileName(info)).Trim();
             string fullPath = (Path.Combine(_pathToStorageFolder, name)).Trim();
             string templatePath = null;
-            switch (document.Info.Fields["XGENDERX"])
+            switch (info.Fields["XGENDERX"])
             {
                 case "male":
                     templatePath = pathToMaleTemplate;
@@ -45,12 +41,14 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
                     break;
             }
             File.Copy(templatePath, fullPath);
-            document.Document = new OpenXMLWordDocument(fullPath,name);
+            return new OpenXMLWordDocument(fullPath,name);
         }
-        private string GenerateFileName(DocumentAndInfoEntity document)
+        private string GenerateFileName(IFillingInfo info)
         {
-            string fileName = String.Format("{0}.{1}_{2}{3}", document.Info.Fields["XIDX"], document.Info.Fields["XNAMEX"], document.Info.Fields["XLASTNAMEX"],  fileExtention);
+            string fileName = String.Format("{0}.{1}_{2}{3}", info.Fields["XIDX"], info.Fields["XNAMEX"], info.Fields["XLASTNAMEX"],  fileExtention);
             return fileName;
         }
+
+        
     }
 }

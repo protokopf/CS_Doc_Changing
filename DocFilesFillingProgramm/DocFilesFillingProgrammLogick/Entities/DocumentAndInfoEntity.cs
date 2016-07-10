@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
+using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 
 namespace DocFilesFillingProgrammLogick.Entities
 {

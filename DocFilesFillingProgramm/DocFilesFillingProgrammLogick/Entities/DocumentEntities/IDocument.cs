@@ -1,4 +1,4 @@
-﻿namespace DocFilesFillingProgrammLogick.Entities
+﻿namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
 {
     /// <summary>
     /// Interface to all kind of documents, that can be changing by using filling info.

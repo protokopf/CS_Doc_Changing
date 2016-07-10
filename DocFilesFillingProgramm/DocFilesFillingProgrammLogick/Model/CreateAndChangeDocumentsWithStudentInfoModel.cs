@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using DocFilesFillingProgrammLogick.Entities;
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
-using System.Threading;
-using System.Threading.Tasks;
+using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
+using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
@@ -16,23 +15,24 @@ namespace DocFilesFillingProgrammLogick.Model
         private string _folderPath;
         private string _excelDocumentFilePath;
 
-        private ICreateDocumentsAlgorythm _createAlg;
-        private IChangeDocumentsAlgorythm _changeAlg;
+        private ICreateDocumentAlgorythm _createAlg;
+        private IChangeDocumentAlgorythm _changeAlg;
         private IRetrieveInfoAlgorythm _retrieveAlg;
 
-        private IList<DocumentAndInfoEntity> _infoAndDocuments;
+        private List<IDocument> _documents;
+        private List<IFillingInfo> _information;
 
         public CreateAndChangeDocumentsWithStudentInfoModel(string folderPath, string excelFilePath)
         {
             _folderPath = folderPath;
             _excelDocumentFilePath = excelFilePath;
-            _infoAndDocuments = new List<DocumentAndInfoEntity>();
+            _documents = new List<IDocument>();
         }
 
 
         #region IDocumentChangeModel implementation
 
-        public ICreateDocumentsAlgorythm CreateAlgorythm
+        public ICreateDocumentAlgorythm CreateAlgorythm
         {
             get
             {
@@ -54,7 +54,7 @@ namespace DocFilesFillingProgrammLogick.Model
                 _retrieveAlg = value;
             }
         }
-        public IChangeDocumentsAlgorythm ChangeAlgorythm
+        public IChangeDocumentAlgorythm ChangeAlgorythm
         {
             get
             {
@@ -89,35 +89,39 @@ namespace DocFilesFillingProgrammLogick.Model
         {
             if (RetrieveInfoAlgorythm != null)
             {
-                RetrieveInfoAlgorythm.RetrieveFillingInfo(ref _infoAndDocuments);
+                _information = _retrieveAlg.RetrieveFillingInfo();
             }
         }
 
         public void CreateDocuments()
         {
-            if (_infoAndDocuments != null && CreateAlgorythm != null)
+            if (CreateAlgorythm != null && _information != null)
             {
-                CreateAlgorythm.CreateDocuments(ref _infoAndDocuments);
+                foreach(IFillingInfo info in _information)
+                {
+                    _documents.Add(_createAlg.CreateDocument(info));
+                }
             }
         }
 
         public void SaveDocuments()
         {
-            if (_infoAndDocuments != null)
+            if (_documents != null)
             {
-                foreach (var doc in _infoAndDocuments)
+                foreach (var doc in _documents)
                 {
-                    doc.Document.Close();
+                    doc.Close();
                 }
-                _infoAndDocuments = null;
+                _documents = null;
             }
         }
 
         public void ChangeDocuments()
         {
-            if (_changeAlg != null && _infoAndDocuments != null)
+            if (_changeAlg != null && _documents != null && _information != null)
             {
-                ChangeAlgorythm.ChangeDocuments(ref _infoAndDocuments);
+                for (int i = 0; i < _information.Count; ++i)
+                    _changeAlg.ChangeDocuments(_documents[i], _information[i]);
             }
         }
 

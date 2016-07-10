@@ -1,4 +1,4 @@
-﻿using DocFilesFillingProgrammLogick.Entities;
+﻿using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 using System.Collections.Generic;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
@@ -12,6 +12,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
         /// Retrieves and returns filling info for documents.
         /// </summary>
         /// <returns>List of IFillingInfo instances if retrieving has been succesfull, otherwise null.</returns>
-        void RetrieveFillingInfo(ref IList<DocumentAndInfoEntity> fillinInfos);
+        List<IFillingInfo> RetrieveFillingInfo();
     }
 }

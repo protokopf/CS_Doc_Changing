@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DocFilesFillingProgrammLogick.Entities;
 using System.IO;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-
-using DocFilesFillingProgrammLogick.Entities;
+using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
 {
@@ -31,7 +29,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
         }
 
 
-        public void RetrieveFillingInfo(ref IList<DocumentAndInfoEntity> documents)
+        public List<IFillingInfo> RetrieveFillingInfo()
         {
             OpenDocument();
 
@@ -44,6 +42,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
             var rows = wsPart.Worksheet.Descendants<Row>();
             bool isFirstEnter = true;
             IFillingInfo fillingInfo = new StudentInfo();
+            List<IFillingInfo> returnedList = new List<IFillingInfo>();
             int counter = 0;
 
             foreach (Row row in rows)
@@ -85,11 +84,13 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
                     isFirstEnter = false;
                 else
                 {
-                    documents.Add(new DocumentAndInfoEntity() { Info = fillingInfo, Document = null });
+                    returnedList.Add(fillingInfo);
                 }
             }
 
             CloseDocument();
+
+            return returnedList;
         }
 
         private void OpenDocument()

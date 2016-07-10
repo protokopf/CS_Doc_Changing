@@ -42,7 +42,7 @@ namespace DocFilesFillingProgrammLogick.Model
         string DataFilePath { get; set; }
 
         IRetrieveInfoAlgorythm RetrieveInfoAlgorythm { get; set; }
-        ICreateDocumentsAlgorythm CreateAlgorythm { get; set; }
-        IChangeDocumentsAlgorythm ChangeAlgorythm { get; set; }
+        ICreateDocumentAlgorythm CreateAlgorythm { get; set; }
+        IChangeDocumentAlgorythm ChangeAlgorythm { get; set; }
     }
 }

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
-using DocFilesFillingProgrammLogick.Entities;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
 using DocFilesFillingProgrammLogick.Model;
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
@@ -25,13 +17,13 @@ namespace DocFilesFillingProgrammConsoleTest
             IDocumentChangeModel model = new CreateAndChangeDocumentsWithStudentInfoModel(storageFolder,excelPath);
 
             model.RetrieveInfoAlgorythm = new RetrieveInfoFromExcelUsingOpenXML(excelPath, "ListSheet");
-            model.CreateAlgorythm = new CreateDocumentUsingFileCopy(storageFolder,excelPath);
-            model.ChangeAlgorythm = new ChangeDocumentUsingExcelAlgorythm();
+            model.CreateAlgorythm = new CreateOpenXMLDocumentAlgorythm(storageFolder,excelPath);
+            model.ChangeAlgorythm = new GeneralChangeAlgorythm();
 
             model.RetrieveFillingInfo();
             model.CreateDocuments();
-            model.ChangeDocuments();
-            model.SaveDocuments();
+            //model.ChangeDocuments();
+            //model.SaveDocuments();
         }
     }
 }

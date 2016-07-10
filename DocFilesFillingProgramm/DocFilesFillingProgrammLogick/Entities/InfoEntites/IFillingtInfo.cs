@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DocFilesFillingProgrammLogick.Entities
+namespace DocFilesFillingProgrammLogick.Entities.InfoEntites
 {
     /// <summary>
     /// Interface that represent any filling info with any pars "field->value".

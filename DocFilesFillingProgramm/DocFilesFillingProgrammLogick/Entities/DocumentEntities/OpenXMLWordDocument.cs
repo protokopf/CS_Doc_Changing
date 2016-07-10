@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using System.IO;
-using System.Text.RegularExpressions;
-using DocumentFormat.OpenXml;
 
-namespace DocFilesFillingProgrammLogick.Entities
+
+
+namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
 {
     public class OpenXMLWordDocument : IDocument
     {
