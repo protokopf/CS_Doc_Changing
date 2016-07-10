@@ -1,11 +1,15 @@
-﻿using System;
-using System.IO;
-using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
+﻿using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
 using DocFilesFillingProgrammLogick.Entities.InfoEntites;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
 {
-    public class CreateOpenXMLDocumentAlgorythm : ICreateDocumentAlgorythm
+    public class CreateInteropWordDocumentAlgorythm : ICreateDocumentAlgorythm
     {
         private const string pathToMaleTemplate = @"Templates\maleTemplate.docx";
         private const string pathToFemaleTemplate = @"Templates\femaleTemplate.docx";
@@ -14,7 +18,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         private string _pathToStorageFolder;
         private string _pathToExcelDocument;
 
-        public CreateOpenXMLDocumentAlgorythm(string storageFolder, string dataFilePath)
+        public CreateInteropWordDocumentAlgorythm(string storageFolder, string dataFilePath)
         {
             _pathToExcelDocument = dataFilePath;
             _pathToStorageFolder = storageFolder;
@@ -41,14 +45,12 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
                     break;
             }
             File.Copy(templatePath, fullPath);
-            return new OpenXMLWordDocument(fullPath,name);
+            return new InteropWordDocument(name, fullPath);
         }
         private string GenerateFileName(IFillingInfo info)
         {
-            string fileName = String.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"],  fileExtention);
+            string fileName = String.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], fileExtention);
             return fileName;
         }
-
-        
     }
 }

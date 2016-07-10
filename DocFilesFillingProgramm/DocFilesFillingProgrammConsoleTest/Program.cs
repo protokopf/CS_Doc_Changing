@@ -17,13 +17,12 @@ namespace DocFilesFillingProgrammConsoleTest
             IDocumentChangeModel model = new CreateAndChangeDocumentsWithStudentInfoModel(storageFolder,excelPath);
 
             model.RetrieveInfoAlgorythm = new RetrieveInfoFromExcelUsingOpenXML(excelPath, "ListSheet");
-            model.CreateAlgorythm = new CreateOpenXMLDocumentAlgorythm(storageFolder,excelPath);
+            model.CreateAlgorythm = new CreateInteropWordDocumentAlgorythm(storageFolder,excelPath);
             model.ChangeAlgorythm = new GeneralChangeAlgorythm();
 
             model.RetrieveFillingInfo();
             model.CreateDocuments();
-            //model.ChangeDocuments();
-            //model.SaveDocuments();
+            model.ChangeDocuments();
         }
     }
 }

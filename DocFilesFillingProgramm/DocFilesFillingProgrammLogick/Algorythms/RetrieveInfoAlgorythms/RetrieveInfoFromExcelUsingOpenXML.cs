@@ -102,7 +102,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
 
         private void FillListOfFields(string fieldName)
         {
-            _fields.Add(_builder.Append("X").Append(fieldName).Append("X").ToString());
+            _fields.Add(_builder.Append("<").Append(fieldName).Append(">").ToString());
             _builder.Clear();
         }
 

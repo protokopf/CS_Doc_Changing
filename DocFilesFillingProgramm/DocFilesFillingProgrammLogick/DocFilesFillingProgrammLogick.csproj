@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Algorythms\ChangeDocumentsAlgorythms\GeneralChangeAlgorythm.cs" />
     <Compile Include="Algorythms\ChangeDocumentsAlgorythms\IChangeDocumentAlgorythm.cs" />
+    <Compile Include="Algorythms\CreateDocumentsAlgorythms\CreateInteropWordDocumentAlgorythm.cs" />
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\CreateOpenXMLDocumentAlgorythm.cs" />
     <Compile Include="Algorythms\RetrieveInfoAlgorythms\RetrieveInfoFromExcelUsingOpenXML.cs" />
     <Compile Include="Algorythms\RetrieveInfoAlgorythms\IRetrieveInfoAlgorythm.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Entities\InfoEntites\StudentInfo.cs" />
     <Compile Include="Entities\DocumentEntities\OpenXMLWordDocument.cs" />
     <Compile Include="Entities\ExcelEntities\IExcelDocument.cs" />
+    <Compile Include="Entities\ManagerEntities\InteropApplicationManager.cs" />
     <Compile Include="Model\CreateAndChangeDocumentsWithStudentInfoModel.cs" />
     <Compile Include="Model\IDocumentChangeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

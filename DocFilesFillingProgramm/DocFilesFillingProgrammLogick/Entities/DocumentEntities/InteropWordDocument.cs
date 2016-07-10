@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocFilesFillingProgrammLogick.Entities.ManagerEntities;
+using Microsoft.Office.Interop.Word;
+using System;
 
 namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
 {
@@ -6,8 +8,14 @@ namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
     {
         private string _name;
         private string _path;
+        private Document _document = null;
 
 
+        public InteropWordDocument(string name, string path)
+        {
+            _name = name;
+            _path = path;
+        }
 
         public string Name
         {
@@ -15,7 +23,6 @@ namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
             {
                 return _name;
             }
-
             set
             {
                 _name = value;
@@ -28,31 +35,42 @@ namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
             {
                 return _path;
             }
-
             set
             {
                 _path = value;
             }
         }
 
-        public void Close()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Open()
         {
-            throw new NotImplementedException();
+            _document = InteropApplicationManager.Instance().GetDocument(Path);
+            _document.Activate();
+        }
+
+        public void Close()
+        {
+            _document.Close();
         }
 
         public void ReplaceTextInPosition(string newText, string oldText)
         {
-            throw new NotImplementedException();
+            foreach(Range range in _document.StoryRanges)
+            {
+                range.Find.Text = oldText;
+                range.Find.Replacement.Text = newText;
+                range.Find.Replacement.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphJustify;
+
+                range.Find.Wrap = WdFindWrap.wdFindContinue;
+                object replaceAll = WdReplace.wdReplaceAll;
+
+                range.Find.Execute(Replace: replaceAll);
+            }
+            Save();
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _document.Save();
         }
     }
 }
