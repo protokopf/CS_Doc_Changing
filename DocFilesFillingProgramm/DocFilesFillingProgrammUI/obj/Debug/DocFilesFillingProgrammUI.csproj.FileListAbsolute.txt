@@ -1,11 +1,9 @@
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocFilesFillingProgrammUI.exe.config
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocFilesFillingProgrammUI.exe
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocFilesFillingProgrammUI.pdb
-E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\MainWindow.g.cs
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\App.g.cs
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI_MarkupCompile.cache
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI_MarkupCompile.lref
-E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\MainWindow.baml
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.g.resources
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.Properties.Resources.resources
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.csproj.GenerateResource.Cache
@@ -13,3 +11,9 @@ E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.pdb
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\App.config
 E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\DocFilesFillingProgrammUI.csprojResolveAssemblyReference.cache
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocFilesFillingProgrammLogick.dll
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocumentFormat.OpenXml.dll
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocFilesFillingProgrammLogick.pdb
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\bin\Debug\DocumentFormat.OpenXml.xml
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\View\MyMainWindow.g.cs
+E:\Программирование\WPF\CS_Doc_Changing\DocFilesFillingProgramm\DocFilesFillingProgrammUI\obj\Debug\View\MyMainWindow.baml

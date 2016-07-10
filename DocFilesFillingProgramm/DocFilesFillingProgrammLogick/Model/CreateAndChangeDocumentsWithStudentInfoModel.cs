@@ -6,6 +6,7 @@ using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
 using DocFilesFillingProgrammLogick.Entities.InfoEntites;
+using DocFilesFillingProgrammLogick.Entities.ManagetEntities;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
@@ -22,11 +23,10 @@ namespace DocFilesFillingProgrammLogick.Model
         private List<IDocument> _documents;
         private List<IFillingInfo> _information;
 
-        public CreateAndChangeDocumentsWithStudentInfoModel(string folderPath, string excelFilePath)
+        public CreateAndChangeDocumentsWithStudentInfoModel()
         {
-            _folderPath = folderPath;
-            _excelDocumentFilePath = excelFilePath;
-            _documents = new List<IDocument>();
+            _excelDocumentFilePath = AppConfigManager.Instance()["excelStorage"];
+            _documents = new List<IDocument>(); 
         }
 
 
@@ -87,24 +87,21 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public void RetrieveFillingInfo()
         {
-            if (RetrieveInfoAlgorythm != null)
-            {
-                _information = _retrieveAlg.RetrieveFillingInfo();
-            }
+            if (_retrieveAlg == null)
+                _retrieveAlg = new RetrieveInfoFromExcelUsingOpenXML(_excelDocumentFilePath, AppConfigManager.Instance()["excelSheet"]);
+            _information = _retrieveAlg.RetrieveFillingInfo();
         }
 
         public void CreateDocuments()
         {
-            if (CreateAlgorythm != null && _information != null)
-            {
-                foreach(IFillingInfo info in _information)
-                {
-                    _documents.Add(_createAlg.CreateDocument(info));
-                }
-            }
+            if(_createAlg == null)
+                _createAlg = new CreateInteropWordDocumentAlgorythm(_folderPath, _excelDocumentFilePath);
+
+            foreach(IFillingInfo info in _information)
+                _documents.Add(_createAlg.CreateDocument(info));
         }
 
-        public void SaveDocuments()
+        public void CloseDocuments()
         {
             if (_documents != null)
             {
@@ -118,13 +115,13 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public void ChangeDocuments()
         {
-            if (_changeAlg != null && _documents != null && _information != null)
-            {
+            if(_changeAlg == null)
+                _changeAlg = new GeneralChangeAlgorythm();
+
+            if (_documents != null && _information != null)
                 for (int i = 0; i < _information.Count; ++i)
                     _changeAlg.ChangeDocuments(_documents[i], _information[i]);
-            }
         }
-
 
         #endregion
     }

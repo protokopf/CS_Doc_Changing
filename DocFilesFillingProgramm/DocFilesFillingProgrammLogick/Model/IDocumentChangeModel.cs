@@ -29,7 +29,7 @@ namespace DocFilesFillingProgrammLogick.Model
         /// <summary>
         /// Saves all created documents.
         /// </summary>
-        void SaveDocuments();
+        void CloseDocuments();
 
         /// <summary>
         /// Path to storage, where created and changed documents will be storaged.
