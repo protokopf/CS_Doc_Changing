@@ -19,7 +19,6 @@
         <Menu Grid.Row="0" Name="menu" Grid.ColumnSpan="2">
             <MenuItem Header="About">
                 <MenuItem Header="?">
-                    
                 </MenuItem>
             </MenuItem>
         </Menu>
@@ -27,9 +26,11 @@
             <TabItem Header="Excel panel">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="4*"/>
@@ -39,18 +40,21 @@
                     <Label Name="pathFolderLabel" Grid.Row="0" Grid.Column="0">
                         Path to storage folder.
                     </Label>
-                    <TextBox Name="pathToFolderTextBox" Text="{Binding StoragePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" Margin="5">
+                    <TextBox Name="pathToFolderTextBox" Text="{Binding Storage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" Margin="5">
                     </TextBox>
                     <Button Command="{Binding ChooseCommand}" Name="chooseFolderButton" Grid.Row="1" Grid.Column="1" Margin="5">
                         Choose
                     </Button>
-
-                    <StackPanel Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Horizontal">
-                        <Button Command="{Binding StartCommand}" Name="startFeedingButton" Margin="165,35" Width="150" Height="25" HorizontalAlignment="Center">
-                            Start
-                        </Button>
-                    </StackPanel>
                     
+                    <Button Grid.Row="2" Grid.ColumnSpan="2" Command="{Binding StartCommand}" Name="startFeedingButton"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="150">
+                        Start
+                    </Button>
+                    
+                    <Label Grid.Row="3" Grid.ColumnSpan="2" Content="Progress:" HorizontalAlignment="Center">
+                    </Label>
+                    <ProgressBar Grid.Row="4" Grid.ColumnSpan="2" Name="progressBar" Minimum="0" Maximum="100">
+                    </ProgressBar>
+                   
                 </Grid>
             </TabItem>
         </TabControl>

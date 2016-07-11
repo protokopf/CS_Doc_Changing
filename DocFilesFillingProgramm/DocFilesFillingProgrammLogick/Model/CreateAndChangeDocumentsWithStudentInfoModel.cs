@@ -13,8 +13,13 @@ namespace DocFilesFillingProgrammLogick.Model
 
     public class CreateAndChangeDocumentsWithStudentInfoModel : IDocumentChangeModel
     {
+        private object locker = new object();
+
         private string _folderPath;
         private string _excelDocumentFilePath;
+
+        private int _filesCount;
+        private int _processedFiles;
 
         private ICreateDocumentAlgorythm _createAlg;
         private IChangeDocumentAlgorythm _changeAlg;
@@ -67,22 +72,71 @@ namespace DocFilesFillingProgrammLogick.Model
 
         }
 
+        public int FilesCount
+        {
+            get
+            {
+                lock (locker)
+                {
+                    return _filesCount;
+                }
+            }
+            set
+            {
+                lock (locker)
+                {
+                    _filesCount = value;
+                }
+            }
+        }
+        public int ProcessedFiles
+        {
+            get {
+                lock (locker)
+                {
+                    return _processedFiles;
+                }
+            }
+            set {
+                lock (locker)
+                {
+                    _processedFiles = value;
+                }
+            }
+        }
+
         public string StoragePath
         {
             get
             {
-                return _folderPath;
+                lock (locker)
+                {
+                    return _folderPath;
+                }
             }
             set
             {
-                _folderPath = value;
+                lock (locker)
+                {
+                    _folderPath = value;
+                }
             }
         }
 
         public string DataFilePath
         {
-            get { return _excelDocumentFilePath; }
-            set { _excelDocumentFilePath = value; }
+            get {
+                lock (locker)
+                {
+                    return _excelDocumentFilePath;
+                }
+            }
+            set {
+                lock (locker)
+                {
+                    _excelDocumentFilePath = value;
+                }
+            }
         }
 
         public void RetrieveFillingInfo()
@@ -90,6 +144,7 @@ namespace DocFilesFillingProgrammLogick.Model
             if (_retrieveAlg == null)
                 _retrieveAlg = new RetrieveInfoFromExcelUsingOpenXML(_excelDocumentFilePath, AppConfigManager.Instance()["excelSheet"]);
             _information = _retrieveAlg.RetrieveFillingInfo();
+            _filesCount = _information.Count;
         }
 
         public void CreateDocuments()
@@ -118,9 +173,13 @@ namespace DocFilesFillingProgrammLogick.Model
             if(_changeAlg == null)
                 _changeAlg = new GeneralChangeAlgorythm();
 
+            _processedFiles = 0;
             if (_documents != null && _information != null)
                 for (int i = 0; i < _information.Count; ++i)
+                {
                     _changeAlg.ChangeDocuments(_documents[i], _information[i]);
+                    ++_processedFiles;
+                }
         }
 
         #endregion

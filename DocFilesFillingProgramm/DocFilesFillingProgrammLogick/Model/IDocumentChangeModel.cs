@@ -44,5 +44,8 @@ namespace DocFilesFillingProgrammLogick.Model
         IRetrieveInfoAlgorythm RetrieveInfoAlgorythm { get; set; }
         ICreateDocumentAlgorythm CreateAlgorythm { get; set; }
         IChangeDocumentAlgorythm ChangeAlgorythm { get; set; }
+
+        int FilesCount { get; set; }
+        int ProcessedFiles { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace DocFilesFillingProgrammUI.Commands
             DialogResult result = dlg.ShowDialog();
             if(result == DialogResult.OK)
             {
-                _model.StoragePath = dlg.SelectedPath;
+                _model.Storage = dlg.SelectedPath;
             }
         }
     }

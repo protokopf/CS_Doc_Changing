@@ -16,7 +16,7 @@ using System.Windows.Controls.Primitives;
 
 namespace DocFilesFillingProgrammUI.ViewModel
 {
-    class ChangeDocumentViewModel : INotifyPropertyChanged
+   public class ChangeDocumentViewModel : INotifyPropertyChanged
     {
         private IDocumentChangeModel _model;
         private IVerifier _verifier;
@@ -34,24 +34,48 @@ namespace DocFilesFillingProgrammUI.ViewModel
             _verifier = new DirectoryVerifier();
         }
 
-        public string StoragePath
+        public string Storage
         {
             get { return _model.StoragePath; }
             set
             {
                 _model.StoragePath = value;
-                OnPropertyChanged("StoragePath");
+                OnPropertyChanged("Storage");
             }
         }
+
+        public int FilesCount
+        {
+            get { return _model.FilesCount; }
+            set
+            {
+                OnPropertyChanged("FilesCount");
+                _model.FilesCount = value;
+            }
+        }
+        public int ProcessedFiles
+        {
+            get { return _model.ProcessedFiles; }
+            set
+            {
+                OnPropertyChanged("ProcessedFiles");
+                _model.ProcessedFiles = value;
+            }
+        }
+
         public void Start()
         {
-            _model.RetrieveFillingInfo();
-            _model.CreateDocuments();
-            _model.ChangeDocuments();
+            Task.Run(() =>
+            {
+                _model.RetrieveFillingInfo();
+                _model.CreateDocuments();
+                _model.ChangeDocuments();
+            });
+
         }
         public bool Verify()
         {
-            return _verifier.Verify(StoragePath);
+            return _verifier.Verify(Storage);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

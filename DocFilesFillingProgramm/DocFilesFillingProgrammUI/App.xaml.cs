@@ -13,10 +13,11 @@ namespace DocFilesFillingProgrammUI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             IDocumentChangeModel model = new CreateAndChangeDocumentsWithStudentInfoModel();
-
+     
             ChangeDocumentViewModel viewModel = new ChangeDocumentViewModel(model);
-            MyMainWindow view = new MyMainWindow();
-            view.DataContext = viewModel;
+
+            MyMainWindow view = new MyMainWindow(viewModel);
+
             view.Show();
         }
     }
