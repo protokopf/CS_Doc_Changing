@@ -2,7 +2,7 @@
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
-
+using System;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
@@ -47,5 +47,7 @@ namespace DocFilesFillingProgrammLogick.Model
 
         int FilesCount { get; set; }
         int ProcessedFiles { get; set; }
+
+        event EventHandler FileHasBeenProcessed;
     }
 }

@@ -52,7 +52,9 @@
                     
                     <Label Grid.Row="3" Grid.ColumnSpan="2" Content="Progress:" HorizontalAlignment="Center">
                     </Label>
-                    <ProgressBar Grid.Row="4" Grid.ColumnSpan="2" Name="progressBar" Minimum="0" Maximum="100">
+                    <ProgressBar Grid.Row="4" Grid.ColumnSpan="2" Name="progressBar" Minimum="0" Maximum="{Binding FilesCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Value="{Binding ProcessedFiles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 BorderBrush="Black" BorderThickness="1">
                     </ProgressBar>
                    
                 </Grid>

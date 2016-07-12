@@ -11,7 +11,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms
             foreach (var fillingPart in info.Fields)
                 document.ReplaceTextInPosition(fillingPart.Value, fillingPart.Key);
             SetCursAlgorythm(document, info);
-            document.Close();
         }
 
         private void SetCursAlgorythm(IDocument document, IFillingInfo info)

@@ -1,5 +1,6 @@
 ﻿using DocFilesFillingProgrammUI.ViewModel;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 
 namespace DocFilesFillingProgrammUI.View
@@ -9,19 +10,30 @@ namespace DocFilesFillingProgrammUI.View
     /// </summary>
     public partial class MyMainWindow : Window
     {
-        ChangeDocumentViewModel _viewModel;
-        BackgroundWorker worker;
+        private ChangeDocumentViewModel _viewModel;
+        private object locker = new object();
 
         public MyMainWindow(ChangeDocumentViewModel viewModel)
         {
             _viewModel = viewModel;
-            this.DataContext = _viewModel;
+            _viewModel.StartProcessing += ViewModelStartProcessing;
+            _viewModel.FinishProcessing += ViewModelFinishProcessing;
+
+            DataContext = _viewModel;
+
             InitializeComponent();
         }
 
-        private void startFeedingButton_Click(object sender, RoutedEventArgs e)
+        private void ViewModelFinishProcessing(object sender, System.EventArgs e)
         {
-            this.startFeedingButton.IsEnabled = false;
+            chooseFolderButton.IsEnabled = true;
+            startFeedingButton.IsEnabled = true;         
+        }
+
+        private void ViewModelStartProcessing(object sender, System.EventArgs e)
+        {
+            chooseFolderButton.IsEnabled = false;
+            startFeedingButton.IsEnabled = false;
         }
     }
 }

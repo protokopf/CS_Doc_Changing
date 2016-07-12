@@ -71,6 +71,7 @@
     <Compile Include="Entities\ManagerEntities\InteropApplicationManager.cs" />
     <Compile Include="Model\CreateAndChangeDocumentsWithStudentInfoModel.cs" />
     <Compile Include="Model\IDocumentChangeModel.cs" />
+    <Compile Include="Model\ModelEntities\FileProcessedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

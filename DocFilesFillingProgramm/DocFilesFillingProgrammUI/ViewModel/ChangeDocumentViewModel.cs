@@ -13,6 +13,7 @@ using DocFilesFillingProgrammUI.Commands;
 using System.IO;
 using DocFilesFillingProgrammUI.ViewModel.Entities;
 using System.Windows.Controls.Primitives;
+using DocFilesFillingProgrammLogick.Model.ModelEntities;
 
 namespace DocFilesFillingProgrammUI.ViewModel
 {
@@ -27,11 +28,20 @@ namespace DocFilesFillingProgrammUI.ViewModel
         public ChangeDocumentViewModel(IDocumentChangeModel model)
         {
             _model = model;
+            _model.FilesCount = 1;
+            _model.FileHasBeenProcessed += FileHasBeenProcessedMethod;
 
             StartCommand = new StartCommand(this);
             ChooseCommand = new ChooseCommand(this);
 
             _verifier = new DirectoryVerifier();
+        }
+
+        private void FileHasBeenProcessedMethod(object sender, EventArgs e)
+        {
+            OnPropertyChanged("FilesCount");
+            OnPropertyChanged("ProcessedFiles");
+
         }
 
         public string Storage
@@ -65,13 +75,15 @@ namespace DocFilesFillingProgrammUI.ViewModel
 
         public void Start()
         {
-            Task.Run(() =>
+            //OnStartProcessing(null);
+            Task t = Task.Run(() =>
             {
                 _model.RetrieveFillingInfo();
                 _model.CreateDocuments();
                 _model.ChangeDocuments();
+                _model.CloseDocuments();
+                //OnFinishProcessing(null);
             });
-
         }
         public bool Verify()
         {
@@ -79,6 +91,19 @@ namespace DocFilesFillingProgrammUI.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public event EventHandler StartProcessing;
+        public event EventHandler FinishProcessing;
+
+        protected void OnStartProcessing(EventArgs e)
+        {
+            StartProcessing?.Invoke(this, e);
+        }
+        protected void OnFinishProcessing(EventArgs e)
+        {
+            FinishProcessing?.Invoke(this, e);
+        }
+
         private void OnPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));

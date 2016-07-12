@@ -17,9 +17,14 @@ namespace DocFilesFillingProgrammLogick.Entities.ManagerEntities
         {
             return _manager ?? new InteropApplicationManager();
         }
+
         public Document GetDocument(string fileName)
         {
             return _application.Documents.Open(fileName);
+        }
+        public void Quit()
+        {
+            _application.Quit();
         }
     }
 }

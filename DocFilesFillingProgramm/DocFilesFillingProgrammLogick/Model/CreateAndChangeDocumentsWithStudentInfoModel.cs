@@ -7,6 +7,9 @@ using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
 using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 using DocFilesFillingProgrammLogick.Entities.ManagetEntities;
+using System;
+using DocFilesFillingProgrammLogick.Model.ModelEntities;
+using DocFilesFillingProgrammLogick.Entities.ManagerEntities;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
@@ -71,6 +74,8 @@ namespace DocFilesFillingProgrammLogick.Model
             }
 
         }
+
+        public event EventHandler FileHasBeenProcessed;
 
         public int FilesCount
         {
@@ -144,7 +149,7 @@ namespace DocFilesFillingProgrammLogick.Model
             if (_retrieveAlg == null)
                 _retrieveAlg = new RetrieveInfoFromExcelUsingOpenXML(_excelDocumentFilePath, AppConfigManager.Instance()["excelSheet"]);
             _information = _retrieveAlg.RetrieveFillingInfo();
-            _filesCount = _information.Count;
+            
         }
 
         public void CreateDocuments()
@@ -154,10 +159,12 @@ namespace DocFilesFillingProgrammLogick.Model
 
             foreach(IFillingInfo info in _information)
                 _documents.Add(_createAlg.CreateDocument(info));
+            _filesCount = _documents.Count;
         }
 
         public void CloseDocuments()
         {
+            InteropApplicationManager.Instance().Quit();
             if (_documents != null)
             {
                 foreach (var doc in _documents)
@@ -178,10 +185,18 @@ namespace DocFilesFillingProgrammLogick.Model
                 for (int i = 0; i < _information.Count; ++i)
                 {
                     _changeAlg.ChangeDocuments(_documents[i], _information[i]);
-                    ++_processedFiles;
+                    OnFileHasProcessed(new FileProcessedEventArgs() { FilesCount = _filesCount, ProcessedFilse = ++_processedFiles });
                 }
         }
 
         #endregion
+
+        protected virtual void OnFileHasProcessed(FileProcessedEventArgs args)
+        {
+            if(FileHasBeenProcessed != null)
+            {
+                FileHasBeenProcessed.Invoke(this, args);
+            }
+        }
     }
 }
