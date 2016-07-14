@@ -75,7 +75,7 @@ namespace DocFilesFillingProgrammUI.ViewModel
 
         public void Start()
         {
-            //OnStartProcessing(null);
+            OnStartProcessing(null);
             Task t = Task.Run(() =>
             {
                 _model.RetrieveFillingInfo();
@@ -85,6 +85,7 @@ namespace DocFilesFillingProgrammUI.ViewModel
                 //OnFinishProcessing(null);
             });
         }
+
         public bool Verify()
         {
             return _verifier.Verify(Storage);

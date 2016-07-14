@@ -164,15 +164,14 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public void CloseDocuments()
         {
-            InteropApplicationManager.Instance().Quit();
             if (_documents != null)
             {
                 foreach (var doc in _documents)
                 {
                     doc.Close();
                 }
-                _documents = null;
             }
+            InteropApplicationManager.Quit();
         }
 
         public void ChangeDocuments()

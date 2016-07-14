@@ -1,30 +1,26 @@
 ﻿using Microsoft.Office.Interop.Word;
-
+using System;
+using System.Runtime.InteropServices;
 
 namespace DocFilesFillingProgrammLogick.Entities.ManagerEntities
 {
     public class InteropApplicationManager
     {
-        private static InteropApplicationManager _manager = null;
-        private Application _application;
+        private static Application _application;
 
-        private InteropApplicationManager()
+        static InteropApplicationManager()
         {
             _application = new Application();
         }
 
-        public static InteropApplicationManager Instance()
-        {
-            return _manager ?? new InteropApplicationManager();
-        }
-
-        public Document GetDocument(string fileName)
+        public static Document GetDocument(string fileName)
         {
             return _application.Documents.Open(fileName);
         }
-        public void Quit()
+        public static void Quit()
         {
             _application.Quit();
         }
+
     }
 }

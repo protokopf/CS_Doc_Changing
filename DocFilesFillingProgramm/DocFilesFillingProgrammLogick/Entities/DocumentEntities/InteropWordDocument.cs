@@ -1,6 +1,7 @@
 ﻿using DocFilesFillingProgrammLogick.Entities.ManagerEntities;
 using Microsoft.Office.Interop.Word;
 using System;
+using System.Runtime.InteropServices;
 
 namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
 {
@@ -9,7 +10,6 @@ namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
         private string _name;
         private string _path;
         private Document _document = null;
-
 
         public InteropWordDocument(string name, string path)
         {
@@ -43,8 +43,7 @@ namespace DocFilesFillingProgrammLogick.Entities.DocumentEntities
 
         public void Open()
         {
-            _document = InteropApplicationManager.Instance().GetDocument(Path);
-            _document.Activate();
+            _document = InteropApplicationManager.GetDocument(Path);
         }
 
         public void Close()
