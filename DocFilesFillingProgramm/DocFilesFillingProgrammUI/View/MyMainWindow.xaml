@@ -42,11 +42,11 @@
                     </Label>
                     <TextBox Name="pathToFolderTextBox" Text="{Binding Storage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" Margin="5">
                     </TextBox>
-                    <Button Command="{Binding ChooseCommand}" Name="chooseFolderButton" Grid.Row="1" Grid.Column="1" Margin="5">
+                    <Button Command="{Binding ChooseCommand}" Name="chooseFolderButton" Grid.Row="1" Grid.Column="1" Margin="5" IsEnabled="{Binding AvaliableControls}">
                         Choose
                     </Button>
-                    
-                    <Button Grid.Row="2" Grid.ColumnSpan="2" Command="{Binding StartCommand}" Name="startFeedingButton"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="150">
+
+                    <Button Grid.Row="2" Grid.ColumnSpan="2" Command="{Binding StartCommand}" Name="startFeedingButton"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" IsEnabled="{Binding AvaliableControls}">
                         Start
                     </Button>
                     

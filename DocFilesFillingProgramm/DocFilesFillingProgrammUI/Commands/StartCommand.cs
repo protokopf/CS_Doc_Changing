@@ -13,11 +13,11 @@ namespace DocFilesFillingProgrammUI.Commands
         private ChangeDocumentViewModel _viewModel;
         public event EventHandler CanExecuteChanged;
 
-
         public StartCommand(ChangeDocumentViewModel viewModel)
         {
             _viewModel = viewModel;
         }
+
 
         public bool CanExecute(object parameter)
         {

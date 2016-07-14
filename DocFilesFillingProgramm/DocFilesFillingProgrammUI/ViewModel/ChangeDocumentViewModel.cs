@@ -19,6 +19,9 @@ namespace DocFilesFillingProgrammUI.ViewModel
 {
    public class ChangeDocumentViewModel : INotifyPropertyChanged
     {
+        private object locker = new object();
+        private bool _avaliableControls = true;
+
         private IDocumentChangeModel _model;
         private IVerifier _verifier;
 
@@ -41,7 +44,6 @@ namespace DocFilesFillingProgrammUI.ViewModel
         {
             OnPropertyChanged("FilesCount");
             OnPropertyChanged("ProcessedFiles");
-
         }
 
         public string Storage
@@ -51,6 +53,21 @@ namespace DocFilesFillingProgrammUI.ViewModel
             {
                 _model.StoragePath = value;
                 OnPropertyChanged("Storage");
+            }
+        }
+        public bool AvaliableControls {
+            get
+            {
+                lock (locker)
+                    return _avaliableControls;
+            }
+            set
+            {
+                lock (locker)
+                {
+                    _avaliableControls = value;
+                    OnPropertyChanged("AvaliableControls");
+                }
             }
         }
 
@@ -75,15 +92,13 @@ namespace DocFilesFillingProgrammUI.ViewModel
 
         public void Start()
         {
-            OnStartProcessing(null);
-            Task t = Task.Run(() =>
-            {
-                _model.RetrieveFillingInfo();
-                _model.CreateDocuments();
-                _model.ChangeDocuments();
-                _model.CloseDocuments();
-                //OnFinishProcessing(null);
+            AvaliableControls = false;
+            Task task = new Task(StartMethodForDelegate);
+            task.ContinueWith((t) => {
+                AvaliableControls = true;
+                ProcessedFiles = 0;
             });
+            task.Start();
         }
 
         public bool Verify()
@@ -109,5 +124,14 @@ namespace DocFilesFillingProgrammUI.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
+        private void StartMethodForDelegate()
+        {
+            _model.RetrieveFillingInfo();
+            _model.CreateDocuments();
+            _model.ChangeDocuments();
+            _model.CloseDocuments();
+        }
+
     }
 }
