@@ -53,6 +53,10 @@
   <ItemGroup>
     <Compile Include="Algorythms\ChangeDocumentsAlgorythms\GeneralChangeAlgorythm.cs" />
     <Compile Include="Algorythms\ChangeDocumentsAlgorythms\IChangeDocumentAlgorythm.cs" />
+    <Compile Include="Algorythms\CreateDocumentsAlgorythms\CopyAlgorythms\CopyWithReplacementAlgorythm.cs" />
+    <Compile Include="Algorythms\CreateDocumentsAlgorythms\CopyAlgorythms\ICopyAlgorythm.cs" />
+    <Compile Include="Algorythms\CreateDocumentsAlgorythms\CopyAlgorythms\SillyCopyAlgorythm.cs" />
+    <Compile Include="Algorythms\CreateDocumentsAlgorythms\CopyAlgorythms\SkipExistingFileCopyAlgorythm.cs" />
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\CreateInteropWordDocumentAlgorythm.cs" />
     <Compile Include="Algorythms\CreateDocumentsAlgorythms\CreateOpenXMLDocumentAlgorythm.cs" />
     <Compile Include="Algorythms\RetrieveInfoAlgorythms\RetrieveInfoFromExcelUsingOpenXML.cs" />

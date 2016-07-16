@@ -13,7 +13,7 @@ namespace DocFilesFillingProgrammLogick.Entities.ManagetEntities
 
         public static AppConfigManager Instance()
         {
-            return _manager ?? new AppConfigManager();
+            return _manager ?? (_manager = new AppConfigManager());
         }
 
         public string this[string key]

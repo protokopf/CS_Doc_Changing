@@ -1,6 +1,4 @@
 ﻿using Microsoft.Office.Interop.Word;
-using System;
-using System.Runtime.InteropServices;
 
 namespace DocFilesFillingProgrammLogick.Entities.ManagerEntities
 {

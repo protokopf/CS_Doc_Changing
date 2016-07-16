@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using DocFilesFillingProgrammLogick.Entities.DocumentEntities;
 using DocFilesFillingProgrammLogick.Entities.InfoEntites;
 using DocFilesFillingProgrammLogick.Entities.ManagetEntities;
@@ -44,8 +43,6 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         private string GenerateFileName(IFillingInfo info)
         {
             return string.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], AppConfigManager.Instance()["fileExtention"]);
-        }
-
-        
+        }  
     }
 }

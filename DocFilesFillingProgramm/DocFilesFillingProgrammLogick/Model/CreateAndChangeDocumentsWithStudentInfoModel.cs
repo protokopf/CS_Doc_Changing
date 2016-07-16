@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-
-using DocFilesFillingProgrammLogick.Entities;
 using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;

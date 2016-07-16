@@ -1,23 +1,15 @@
 ﻿using DocFilesFillingProgrammLogick.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DocFilesFillingProgrammLogick.Algorythms.ChangeDocumentsAlgorythms;
-using DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms;
-using DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms;
 using System.ComponentModel;
 using System.Windows.Input;
 using DocFilesFillingProgrammUI.Commands;
-using System.IO;
 using DocFilesFillingProgrammUI.ViewModel.Entities;
-using System.Windows.Controls.Primitives;
-using DocFilesFillingProgrammLogick.Model.ModelEntities;
+using System.Windows;
 
 namespace DocFilesFillingProgrammUI.ViewModel
 {
-   public class ChangeDocumentViewModel : INotifyPropertyChanged
+    public class ChangeDocumentViewModel : INotifyPropertyChanged
     {
         private object locker = new object();
         private bool _avaliableControls = true;
@@ -97,6 +89,7 @@ namespace DocFilesFillingProgrammUI.ViewModel
             task.ContinueWith((t) => {
                 AvaliableControls = true;
                 ProcessedFiles = 0;
+                MessageBox.Show("All files have been succefully created!", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             task.Start();
         }

@@ -1,6 +1,4 @@
 ﻿using DocFilesFillingProgrammUI.ViewModel;
-using System.ComponentModel;
-using System.Threading;
 using System.Windows;
 
 namespace DocFilesFillingProgrammUI.View
