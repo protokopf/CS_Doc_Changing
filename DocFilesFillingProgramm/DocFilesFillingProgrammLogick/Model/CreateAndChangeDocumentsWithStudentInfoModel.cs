@@ -11,7 +11,6 @@ using DocFilesFillingProgrammLogick.Entities.ManagerEntities;
 
 namespace DocFilesFillingProgrammLogick.Model
 {
-
     public class CreateAndChangeDocumentsWithStudentInfoModel : IDocumentChangeModel
     {
         private object locker = new object();
@@ -34,7 +33,6 @@ namespace DocFilesFillingProgrammLogick.Model
             _excelDocumentFilePath = AppConfigManager.Instance()["excelStorage"];
             _documents = new List<IDocument>(); 
         }
-
 
         #region IDocumentChangeModel implementation
 
@@ -152,8 +150,10 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public void CreateDocuments()
         {
-            if(_createAlg == null)
+            if (_createAlg == null)
                 _createAlg = new CreateInteropWordDocumentAlgorythm(_folderPath, _excelDocumentFilePath);
+            if (_documents == null)
+                _documents = new List<IDocument>();
 
             foreach(IFillingInfo info in _information)
                 _documents.Add(_createAlg.CreateDocument(info));
@@ -169,7 +169,9 @@ namespace DocFilesFillingProgrammLogick.Model
                     doc.Close();
                 }
             }
-            InteropApplicationManager.Quit();
+            _documents = null;
+            _information = null;
+            //InteropApplicationManager.Quit();
         }
 
         public void ChangeDocuments()
@@ -194,6 +196,11 @@ namespace DocFilesFillingProgrammLogick.Model
             {
                 FileHasBeenProcessed.Invoke(this, args);
             }
+        }
+
+        ~CreateAndChangeDocumentsWithStudentInfoModel()
+        {
+            InteropApplicationManager.Quit();
         }
     }
 }

@@ -14,10 +14,11 @@ namespace DocFilesFillingProgrammUI.ViewModel.Entities
                     return true;
                 else
                 {
-                    MessageBox.Show("Storage does not exist.Choose right folder!", "Folder error.", MessageBoxButton.OK);
+                    MessageBox.Show("Storage does not exist.Choose right folder!", "Folder error", MessageBoxButton.OK,MessageBoxImage.Information);
                     return false;
                 }
             }
+            MessageBox.Show("Choose storage for files!", "Missing field", MessageBoxButton.OK, MessageBoxImage.Information);
             return false;
         }
     }

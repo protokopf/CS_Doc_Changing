@@ -19,6 +19,7 @@ namespace DocFilesFillingProgrammUI.ViewModel
 
         public ICommand StartCommand { get; set; }
         public ICommand ChooseCommand { get; set; }
+        public ICommand LaunchExcelCommand { get; set; }
 
         public ChangeDocumentViewModel(IDocumentChangeModel model)
         {
@@ -28,6 +29,7 @@ namespace DocFilesFillingProgrammUI.ViewModel
 
             StartCommand = new StartCommand(this);
             ChooseCommand = new ChooseCommand(this);
+            LaunchExcelCommand = new LaunchExcelCommand();
 
             _verifier = new DirectoryVerifier();
         }
@@ -89,7 +91,7 @@ namespace DocFilesFillingProgrammUI.ViewModel
             task.ContinueWith((t) => {
                 AvaliableControls = true;
                 ProcessedFiles = 0;
-                MessageBox.Show("All files have been succefully created!", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("All files have been successfully created!", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             task.Start();
         }

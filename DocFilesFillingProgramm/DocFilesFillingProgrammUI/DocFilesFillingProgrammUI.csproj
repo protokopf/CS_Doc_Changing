@@ -68,6 +68,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\ChooseCommand.cs" />
+    <Compile Include="Commands\LaunchExcelCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="ViewModel\ChangeDocumentViewModel.cs" />
     <Compile Include="ViewModel\Entities\DirectoryVerifier.cs" />

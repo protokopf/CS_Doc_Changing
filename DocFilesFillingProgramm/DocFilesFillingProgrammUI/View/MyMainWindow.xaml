@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocFilesFillingProgrammUI"
         mc:Ignorable="d"
-        Title="ExamDocumentFeeder" Height="250" Width="525" ResizeMode="CanMinimize">
+        Title="Filling documents" Height="250" Width="525" ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="287*"/>
@@ -46,10 +47,11 @@
                         Choose
                     </Button>
 
-                    <Button Grid.Row="2" Grid.ColumnSpan="2" Command="{Binding StartCommand}" Name="startFeedingButton"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" IsEnabled="{Binding AvaliableControls}">
-                        Start
-                    </Button>
-                    
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                        <Button Command="{Binding StartCommand}" x:Name="startFeedingButton"  HorizontalAlignment="Center" VerticalAlignment="Center"  IsEnabled="{Binding AvaliableControls}" Content="Start" Width="120" Margin="5,0,0,0"/>
+                        <Button Command="{Binding LaunchExcelCommand}" x:Name="launchExcelButton"  HorizontalAlignment="Center" VerticalAlignment="Center"  IsEnabled="{Binding AvaliableControls}" Content="Launch excel file" Width="120" Margin="152,0,0,0" />
+                    </StackPanel>
+
                     <Label Grid.Row="3" Grid.ColumnSpan="2" Content="Progress:" HorizontalAlignment="Center">
                     </Label>
                     <ProgressBar Grid.Row="4" Grid.ColumnSpan="2" Name="progressBar" Minimum="0" Maximum="{Binding FilesCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
