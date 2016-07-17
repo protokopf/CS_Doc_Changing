@@ -1,12 +1,23 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.IO;
+using System.Reflection;
 
 namespace DocFilesFillingProgrammLogick.Entities.ManagetEntities
 {
 
     public class AppConfigManager : IConfigManager
     {
+
         private static AppConfigManager _manager;
-        public AppConfigManager()
+
+        private const string male = "maleTemplate";
+        private const string female = "femaleTemplate";
+        private const string extention = "fileExtention";
+        private const string storage = "excelStorage";
+        private const string sheet = "excelSheet";
+
+        private AppConfigManager()
         {
            
         }
@@ -16,12 +27,59 @@ namespace DocFilesFillingProgrammLogick.Entities.ManagetEntities
             return _manager ?? (_manager = new AppConfigManager());
         }
 
-        public string this[string key]
+        public string GetExtention()
         {
-            get
+            return ConfigurationSettings.AppSettings[extention];
+        }
+
+        public string GetFemaleTemplate()
+        {
+            string pathToFile = ConfigurationSettings.AppSettings[female];
+            CheckIfFileExists(pathToFile);
+            return pathToFile;
+        }
+
+        public string GetMaleTemplate()
+        {
+            string pathToFile = ConfigurationSettings.AppSettings[male];
+            CheckIfFileExists(pathToFile);
+            return pathToFile;
+        }
+
+        public string GetSheet()
+        {
+            return ConfigurationSettings.AppSettings[sheet];
+        }
+
+        public string GetStorage()
+        {
+            string pathToStorage =  ConfigurationSettings.AppSettings[storage];
+            CheckIfFileExists(pathToStorage);
+            return pathToStorage;
+        }
+
+        
+        private void CheckIfFileExists(string pathToFile)
+        {
+            if (!File.Exists(pathToFile))
             {
-               return ConfigurationSettings.AppSettings[key];
+                string folderPath = Path.GetDirectoryName(pathToFile);
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+               CreateFile(pathToFile);
             }
+        }
+        private void CreateFile(string pathToFile)
+        {
+            Assembly currentAssembly = Assembly.GetExecutingAssembly();
+            string assName = currentAssembly.FullName;
+            string fullPathToSource = assName.Substring(0, assName.IndexOf(',')) + ".NesessaryResources." + Path.GetFileName(pathToFile);
+            Stream fileStream = currentAssembly.GetManifestResourceStream(fullPathToSource);
+            FileStream file = File.Create(pathToFile);
+            fileStream.CopyTo(file);
+
+            fileStream.Close();
+            file.Close();
         }
     }
 }

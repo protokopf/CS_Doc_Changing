@@ -30,7 +30,6 @@ namespace DocFilesFillingProgrammLogick.Model
 
         public CreateAndChangeDocumentsWithStudentInfoModel()
         {
-            _excelDocumentFilePath = AppConfigManager.Instance()["excelStorage"];
             _documents = new List<IDocument>(); 
         }
 
@@ -143,7 +142,7 @@ namespace DocFilesFillingProgrammLogick.Model
         public void RetrieveFillingInfo()
         {
             if (_retrieveAlg == null)
-                _retrieveAlg = new RetrieveInfoFromExcelUsingOpenXML(_excelDocumentFilePath, AppConfigManager.Instance()["excelSheet"]);
+                _retrieveAlg = new RetrieveInfoFromExcelUsingOpenXML();
             _information = _retrieveAlg.RetrieveFillingInfo();
             
         }
@@ -151,7 +150,7 @@ namespace DocFilesFillingProgrammLogick.Model
         public void CreateDocuments()
         {
             if (_createAlg == null)
-                _createAlg = new CreateInteropWordDocumentAlgorythm(_folderPath, _excelDocumentFilePath);
+                _createAlg = new CreateInteropWordDocumentAlgorythm(_folderPath);
             if (_documents == null)
                 _documents = new List<IDocument>();
 

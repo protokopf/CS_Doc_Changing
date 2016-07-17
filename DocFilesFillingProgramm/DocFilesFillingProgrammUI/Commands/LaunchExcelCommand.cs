@@ -21,7 +21,7 @@ namespace DocFilesFillingProgrammUI.Commands
         public void Execute(object parameter)
         {
             Process excelProcess = new Process();
-            excelProcess.StartInfo.FileName = AppConfigManager.Instance()["excelStorage"];
+            excelProcess.StartInfo.FileName = AppConfigManager.Instance().GetStorage();
             excelProcess.Start();
             excelProcess.WaitForExit();
         }

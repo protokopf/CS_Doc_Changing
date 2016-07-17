@@ -2,9 +2,10 @@
 {
     public interface IConfigManager
     {
-        string this[string key]
-        {
-            get;
-        }
+        string GetMaleTemplate();
+        string GetFemaleTemplate();
+        string GetExtention();
+        string GetStorage();
+        string GetSheet();
     }
 }

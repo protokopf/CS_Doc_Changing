@@ -19,6 +19,5 @@ namespace DocFilesFillingProgrammLogick.Entities.ManagerEntities
         {
             _application.Quit();
         }
-
     }
 }

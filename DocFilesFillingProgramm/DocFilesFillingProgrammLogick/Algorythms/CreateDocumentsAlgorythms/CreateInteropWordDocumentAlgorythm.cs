@@ -17,25 +17,26 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         private ICopyAlgorythm _copyAlgorythm;
 
 
-        public CreateInteropWordDocumentAlgorythm(string storageFolder, string dataFilePath)
+        public CreateInteropWordDocumentAlgorythm(string folder)
         {
-            _pathToExcelDocument = dataFilePath;
-            _pathToStorageFolder = storageFolder;
+            _pathToStorageFolder =  folder;
             _copyAlgorythm = new CopyWithReplacementAlgorythm();
         }
 
         public IDocument CreateDocument(IFillingInfo info)
         {
+            _pathToExcelDocument = AppConfigManager.Instance().GetStorage();
+
             string name = (GenerateFileName(info)).Trim();
             string fullPath = (Path.Combine(_pathToStorageFolder, name)).Trim();
             string templatePath = null;
             switch (info.Fields["<gender>"])
             {
                 case "male":
-                    templatePath = AppConfigManager.Instance()["maleTemplate"];
+                    templatePath = AppConfigManager.Instance().GetMaleTemplate();
                     break;
                 case "female":
-                    templatePath = AppConfigManager.Instance()["femaleTemplate"];
+                    templatePath = AppConfigManager.Instance().GetFemaleTemplate();
                     break;
             }
             _copyAlgorythm.MakeCopy(templatePath, fullPath);
@@ -44,7 +45,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
 
         private string GenerateFileName(IFillingInfo info)
         {
-            return String.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], AppConfigManager.Instance()["fileExtention"]);
+            return String.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], AppConfigManager.Instance().GetExtention());
         }
     }
 }

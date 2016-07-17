@@ -6,6 +6,7 @@ using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocFilesFillingProgrammLogick.Entities.InfoEntites;
+using DocFilesFillingProgrammLogick.Entities.ManagetEntities;
 
 namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
 {
@@ -22,15 +23,15 @@ namespace DocFilesFillingProgrammLogick.Algorythms.RetrieveInfoAlgorythms
         private List<string> _fields = new List<string>();
 
 
-        public RetrieveInfoFromExcelUsingOpenXML(string path, string sheetName)
+        public RetrieveInfoFromExcelUsingOpenXML()
         {
-            _pathToFile = path;
-            _sheetName = sheetName;
         }
-
 
         public List<IFillingInfo> RetrieveFillingInfo()
         {
+            _pathToFile = AppConfigManager.Instance().GetStorage();
+            _sheetName = AppConfigManager.Instance().GetSheet();
+
             OpenDocument();
 
             SharedStringTablePart sstpart = _wbPart.GetPartsOfType<SharedStringTablePart>().First();

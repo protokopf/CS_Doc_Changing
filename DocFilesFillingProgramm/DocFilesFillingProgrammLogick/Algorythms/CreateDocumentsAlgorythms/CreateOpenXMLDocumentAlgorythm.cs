@@ -11,9 +11,8 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         private string _pathToStorageFolder;
         private string _pathToExcelDocument;
 
-        public CreateOpenXMLDocumentAlgorythm(string storageFolder, string dataFilePath)
+        public CreateOpenXMLDocumentAlgorythm(string storageFolder)
         {
-            _pathToExcelDocument = dataFilePath;
             _pathToStorageFolder = storageFolder;
         }
 
@@ -25,16 +24,17 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
 
         private IDocument FormDocument(IFillingInfo info)
         {
+            _pathToExcelDocument = AppConfigManager.Instance().GetStorage();
             string name = (GenerateFileName(info)).Trim();
             string fullPath = (Path.Combine(_pathToStorageFolder, name)).Trim();
             string templatePath = null;
             switch (info.Fields["<gender>"])
             {
                 case "male":
-                    templatePath = AppConfigManager.Instance()["maleTemplate"];
+                    templatePath = AppConfigManager.Instance().GetMaleTemplate() ;
                     break;
                 case "female":
-                    templatePath = AppConfigManager.Instance()["femaleTemplate"];
+                    templatePath = AppConfigManager.Instance().GetFemaleTemplate();
                     break;
             }
             File.Copy(templatePath, fullPath);
@@ -42,7 +42,7 @@ namespace DocFilesFillingProgrammLogick.Algorythms.CreateDocumentsAlgorythms
         }
         private string GenerateFileName(IFillingInfo info)
         {
-            return string.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], AppConfigManager.Instance()["fileExtention"]);
+            return string.Format("{0}.{1}_{2}{3}", info.Fields["<id>"], info.Fields["<NAME>"], info.Fields["<LASTNAME>"], AppConfigManager.Instance().GetExtention());
         }  
     }
 }
