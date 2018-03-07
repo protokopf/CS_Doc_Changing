@@ -92,7 +92,12 @@ namespace DocFilesFillingProgrammUI.ViewModel
                 AvaliableControls = true;
                 ProcessedFiles = 0;
                 MessageBox.Show("All files have been successfully created!", "Finish", MessageBoxButton.OK, MessageBoxImage.Information);
-            });
+            }, TaskContinuationOptions.NotOnFaulted);
+            task.ContinueWith((t) => {
+                AvaliableControls = true;
+                ProcessedFiles = 0;
+                ShowErrorWithException(t.Exception);
+            }, TaskContinuationOptions.OnlyOnFaulted);
             task.Start();
         }
 
@@ -126,6 +131,16 @@ namespace DocFilesFillingProgrammUI.ViewModel
             _model.CreateDocuments();
             _model.ChangeDocuments();
             _model.CloseDocuments();
+        }
+
+        private void ShowErrorWithException(AggregateException ex)
+        {
+            MessageBox.Show(FormErrorString(ex.InnerException), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private string FormErrorString(Exception ex)
+        {
+            return $"An error has occurred. Message={ex.Message}.\n Stacktrace: {ex.StackTrace}";
         }
 
     }
